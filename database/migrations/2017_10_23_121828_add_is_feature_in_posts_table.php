@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsFeatureInPostsTabl extends Migration
+class AddIsFeatureInPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,10 @@ class AddIsFeatureInPostsTabl extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('title', 500)->change();
+            $table->boolean('is_feature')->default(false)->after('content');
+        });
     }
 
     /**
@@ -23,6 +26,8 @@ class AddIsFeatureInPostsTabl extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('posts', function (Blueprint $table) {
+            //
+        });
     }
 }
